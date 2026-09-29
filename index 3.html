@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Too Yumm Brainstorming — Badass Media Client Solutions Assessment</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0f0f10;--paper:#faf7f0;--yum:#ffcc00;--hot:#ff3d2e;--line:#1b1b1b;}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--paper);color:var(--ink)}
+  .display{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
+  .grid-bg{background-image:radial-gradient(#0000001a 1px,transparent 1px);background-size:22px 22px}
+  .card{background:#fff;border:2px solid var(--line);border-radius:18px;box-shadow:6px 6px 0 var(--line);transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--line)}
+  .chip{display:inline-flex;align-items:center;gap:.4rem;border:2px solid var(--line);border-radius:999px;padding:.2rem .75rem;font-weight:600;font-size:.8rem;background:#fff}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .note{background:#fff8c4;border:2px dashed #b89400;border-radius:14px}
+  .navlink.active{background:var(--ink);color:var(--yum)}
+  .map-node{cursor:pointer;transition:all .2s}
+  .map-node:hover rect{fill:var(--yum)}
+  .marquee{animation:mq 30s linear infinite}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .wiggle:hover{animation:wg .4s ease}
+  @keyframes wg{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+  details summary::-webkit-details-marker{display:none}
+  .bar{transition:width .8s cubic-bezier(.2,.8,.2,1)}
+</style>
+</head>
+<body class="grid-bg">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 backdrop-blur bg-[#faf7f0cc] border-b-2 border-black">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-2 font-black display text-lg">
+      <span class="w-9 h-9 rounded-full bg-[var(--yum)] border-2 border-black grid place-items-center text-sm">TY</span>
+      Too Yumm <span class="hidden sm:inline font-normal text-black/50">× badass media</span>
+    </a>
+    <nav class="hidden lg:flex gap-1 text-sm font-semibold" id="nav">
+      <a href="#brief" class="navlink px-3 py-1.5 rounded-full">Brief</a>
+      <a href="#situation" class="navlink px-3 py-1.5 rounded-full">Situation</a>
+      <a href="#competitors" class="navlink px-3 py-1.5 rounded-full">Competitors</a>
+      <a href="#proof" class="navlink px-3 py-1.5 rounded-full">Proof</a>
+      <a href="#part1" class="navlink px-3 py-1.5 rounded-full">Part 1</a>
+      <a href="#part2" class="navlink px-3 py-1.5 rounded-full">Part 2</a>
+      <a href="#part3" class="navlink px-3 py-1.5 rounded-full">Part 3</a>
+      <a href="#part4" class="navlink px-3 py-1.5 rounded-full">Part 4</a>
+    </nav>
+    <button id="menuBtn" class="lg:hidden chip">Menu ☰</button>
+  </div>
+  <div id="mobileMenu" class="hidden lg:hidden border-t-2 border-black bg-[var(--paper)] px-4 py-3 grid grid-cols-4 gap-2 text-sm font-semibold">
+    <a href="#brief">Brief</a><a href="#situation">Situation</a><a href="#competitors">Competitors</a><a href="#proof">Proof</a>
+    <a href="#part1">Part 1</a><a href="#part2">Part 2</a><a href="#part3">Part 3</a><a href="#part4">Part 4</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="max-w-7xl mx-auto px-4 pt-16 pb-10">
+  <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <div class="reveal">
+      <span class="chip bg-[var(--yum)]">📋 badass media | client solutions assessment</span>
+      <h1 class="display font-bold text-5xl sm:text-7xl mt-6 leading-[0.95]">Too Yumm<br><span class="relative inline-block">Brainstorming<svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" preserveAspectRatio="none"><path d="M2 9 Q 75 1 150 7 T 298 5" stroke="#ff3d2e" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span></h1>
+      <p class="mt-6 text-lg text-black/70 max-w-xl">The current/previous situation at a glance, what competitors are doing, proof, and a four-part plan to fix a <b>format problem</b>, not a reach or money problem.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#situation" class="px-6 py-3 rounded-full bg-black text-[var(--yum)] font-bold border-2 border-black hover:bg-[var(--hot)] hover:text-white transition">Start the walkthrough →</a>
+        <a href="#part2" class="px-6 py-3 rounded-full bg-white font-bold border-2 border-black hover:bg-[var(--yum)] transition">Jump to the solution</a>
+      </div>
+    </div>
+
+    <!-- Board map -->
+    <div class="card p-4 reveal">
+      <div class="flex items-center justify-between mb-2">
+        <p class="text-xs font-bold uppercase tracking-widest text-black/50">The board, mapped: click a box</p>
+        <span class="text-xs text-black/40">🗺️</span>
+      </div>
+      <svg viewBox="0 0 520 330" class="w-full h-auto">
+        <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1b1b1b"/></marker></defs>
+        <g stroke="#1b1b1b" stroke-width="2" fill="none" marker-end="url(#arr)">
+          <path d="M200 110 H130 V78"/>
+          <path d="M320 110 H390 V78"/>
+          <path d="M260 140 V180 H62 V228"/>
+          <path d="M260 180 H192 V228"/>
+          <path d="M260 180 H328 V228"/>
+          <path d="M260 180 H458 V228"/>
+        </g>
+        <g class="map-node" data-go="#brief"><rect x="200" y="8" width="120" height="44" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="2"/><text x="260" y="35" text-anchor="middle" font-size="13" font-weight="700" font-family="Space Grotesk">The Brief</text></g>
+        <g class="map-node" data-go="#competitors"><rect x="60" y="30" width="140" height="46" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="2"/><text x="130" y="58" text-anchor="middle" font-size="13" font-weight="700" font-family="Space Grotesk">Competitor Analysis</text></g>
+        <g class="map-node" data-go="#proof"><rect x="340" y="30" width="110" height="46" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="2"/><text x="395" y="58" text-anchor="middle" font-size="13" font-weight="700" font-family="Space Grotesk">Proof</text></g>
+        <g class="map-node" data-go="#situation"><rect x="190" y="84" width="140" height="56" rx="8" fill="#ffcc00" stroke="#1b1b1b" stroke-width="2.5"/><text x="260" y="108" text-anchor="middle" font-size="14" font-weight="700" font-family="Space Grotesk">Too Yumm</text><text x="260" y="126" text-anchor="middle" font-size="12" font-family="Space Grotesk">Brainstorming</text></g>
+        <g class="map-node" data-go="#part1"><rect x="12" y="230" width="100" height="80" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="2"/><text x="62" y="266" text-anchor="middle" font-size="15" font-weight="700" font-family="Space Grotesk">Part 1</text><text x="62" y="286" text-anchor="middle" font-size="10" fill="#666">Problem</text></g>
+        <g class="map-node" data-go="#part2"><rect x="142" y="230" width="100" height="80" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="2"/><text x="192" y="266" text-anchor="middle" font-size="15" font-weight="700" font-family="Space Grotesk">Part 2</text><text x="192" y="286" text-anchor="middle" font-size="10" fill="#666">Solution</text></g>
+        <g class="map-node" data-go="#part3"><rect x="278" y="230" width="100" height="80" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="2"/><text x="328" y="266" text-anchor="middle" font-size="15" font-weight="700" font-family="Space Grotesk">Part 3</text><text x="328" y="286" text-anchor="middle" font-size="10" fill="#666">Business case</text></g>
+        <g class="map-node" data-go="#part4"><rect x="408" y="230" width="100" height="80" rx="8" fill="#fff" stroke="#1b1b1b" stroke-width="2" stroke-dasharray="5 4"/><text x="458" y="266" text-anchor="middle" font-size="15" font-weight="700" font-family="Space Grotesk">Part 4</text><text x="458" y="286" text-anchor="middle" font-size="10" fill="#666">Outbound</text></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="border-y-2 border-black bg-black text-[var(--yum)] overflow-hidden py-3">
+  <div class="marquee whitespace-nowrap display font-bold text-xl flex gap-10 w-max">
+    <span>BAKED, NOT FRIED ✦ FIX THE FORMAT ✦ STOP RENTING REACH ✦ INTERNET-FIRST ✦ SUBTLE BRANDING ✦ ROOTED, NOT VERTICAL ✦ BAKED, NOT FRIED ✦ FIX THE FORMAT ✦ STOP RENTING REACH ✦ INTERNET-FIRST ✦ SUBTLE BRANDING ✦ ROOTED, NOT VERTICAL ✦</span>
+    <span>BAKED, NOT FRIED ✦ FIX THE FORMAT ✦ STOP RENTING REACH ✦ INTERNET-FIRST ✦ SUBTLE BRANDING ✦ ROOTED, NOT VERTICAL ✦ BAKED, NOT FRIED ✦ FIX THE FORMAT ✦ STOP RENTING REACH ✦ INTERNET-FIRST ✦ SUBTLE BRANDING ✦ ROOTED, NOT VERTICAL ✦</span>
+  </div>
+</div>
+
+<!-- BRIEF -->
+<section id="brief" class="max-w-7xl mx-auto px-4 py-20">
+  <div class="reveal flex items-end justify-between flex-wrap gap-4 mb-10">
+    <div>
+      <p class="font-bold text-[var(--hot)] uppercase tracking-widest text-sm">00 — The Assessment</p>
+      <h2 class="display font-bold text-4xl sm:text-5xl mt-2">The brief</h2>
+    </div>
+    <p class="text-black/60 max-w-md">"There are no perfect answers. We're interested in how you think."</p>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="card p-6 reveal">
+      <p class="text-3xl">🎯</p>
+      <h3 class="display font-bold text-xl mt-3">The client</h3>
+      <p class="text-black/70 mt-2 text-sm leading-relaxed">Too Yumm, a large-scale FMCG snack brand with <b>133k followers</b> in the original feed review. It has built awareness through influencer and celebrity marketing, but engagement has slowed and the content feels repetitive. With <b>two new launches in four months</b>, it needs a recurring format audiences actively choose to follow.</p>
+      <div class="mt-4 flex flex-wrap gap-2"><span class="chip">Part 1 · Understand the opportunity</span><span class="chip">Part 2 · Build the solution</span><span class="chip">Part 3 · Sell the idea</span><span class="chip">Part 4 · Outbound thinking</span></div>
+    </div>
+    <div class="card p-6 reveal">
+      <p class="text-3xl">📦</p>
+      <h3 class="display font-bold text-xl mt-3">Submission</h3>
+      <ul class="mt-3 space-y-3 text-sm">
+        <li class="flex justify-between border-b border-black/10 pb-2"><span class="text-black/60">Format</span><b>One presentation</b></li>
+        <li class="flex justify-between border-b border-black/10 pb-2"><span class="text-black/60">Length</span><b>Maximum 8 slides</b></li>
+        <li class="flex justify-between"><span class="text-black/60">Deadline</span><b>2 working days</b></li>
+      </ul>
+    </div>
+    <div class="card p-6 reveal">
+      <p class="text-3xl">🧠</p>
+      <h3 class="display font-bold text-xl mt-3">What's being evaluated</h3>
+      <div class="mt-3 flex flex-wrap gap-2 text-sm">
+        <span class="chip bg-[var(--yum)]">Ownership</span><span class="chip">Prioritization</span><span class="chip">Decision making</span><span class="chip bg-[var(--yum)]">Communication</span><span class="chip">Stakeholder management</span><span class="chip bg-[var(--yum)]">Commercial thinking</span><span class="chip">Balancing client, team & business interests</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SITUATION -->
+<section id="situation" class="bg-[var(--yum)] border-y-2 border-black py-20">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="reveal mb-10">
+      <p class="font-bold uppercase tracking-widest text-sm">01 — Too Yumm Brainstorming</p>
+      <h2 class="display font-bold text-4xl sm:text-5xl mt-2">The current/previous situation at a glance</h2>
+      <p class="mt-3 max-w-2xl text-black/70">Ten observations from going through their feed. Filter them by theme:</p>
+      <div class="mt-5 flex flex-wrap gap-2" id="filters">
+        <button class="chip filter-btn bg-black text-[var(--yum)]" data-f="all">All 10</button>
+        <button class="chip filter-btn" data-f="reach">📉 Reach</button>
+        <button class="chip filter-btn" data-f="strategy">🧭 Strategy</button>
+        <button class="chip filter-btn" data-f="content">🎬 Content</button>
+      </div>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="obsGrid"></div>
+  </div>
+</section>
+
+<!-- COMPETITORS -->
+<section id="competitors" class="max-w-7xl mx-auto px-4 py-20">
+  <div class="reveal mb-10">
+    <p class="font-bold text-[var(--hot)] uppercase tracking-widest text-sm">02 — Looking around</p>
+    <h2 class="display font-bold text-4xl sm:text-5xl mt-2">Competitor analysis</h2>
+  </div>
+  <div class="grid lg:grid-cols-5 gap-6">
+    <!-- Lays -->
+    <div class="lg:col-span-2 card p-6 reveal">
+      <div class="note px-4 py-3 text-center font-semibold">"Even a brand with Lay's following can't buy its way out of a stale content model."</div>
+      <div class="mt-5 rounded-2xl bg-[#111] text-white p-4 border-2 border-black">
+        <div class="flex items-center gap-3">
+          <div class="w-14 h-14 rounded-full bg-[var(--yum)] border-4 border-[var(--hot)] grid place-items-center text-[var(--hot)] font-black italic">Lay's</div>
+          <div class="text-xs">
+            <p class="font-bold text-sm">lays ✔</p>
+            <div class="flex gap-3 text-white/70 mt-1"><span><b class="text-white">2,665</b> posts</span><span><b class="text-white">1.3M</b> followers</span></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-4 gap-1 mt-4">
+          <div class="aspect-[9/14] rounded bg-gradient-to-b from-orange-400 to-amber-800 relative"><span class="absolute bottom-1 left-1 text-[10px]">▶ 4.1K</span></div>
+          <div class="aspect-[9/14] rounded bg-gradient-to-b from-sky-300 to-yellow-500 relative"><span class="absolute bottom-1 left-1 text-[10px]">▶ 6.8K</span></div>
+          <div class="aspect-[9/14] rounded bg-gradient-to-b from-stone-200 to-stone-500 relative"><span class="absolute bottom-1 left-1 text-[10px]">▶ 3.2K</span></div>
+          <div class="aspect-[9/14] rounded bg-gradient-to-b from-rose-400 to-orange-900 relative"><span class="absolute bottom-1 left-1 text-[10px]">▶ 5.5K</span></div>
+        </div>
+        <p class="text-[10px] text-white/40 mt-2 text-center">Illustrative profile and view counts, not measured campaign data.</p>
+      </div>
+    </div>
+    <!-- Indian competitors -->
+    <div class="lg:col-span-3 card p-6 reveal">
+      <div class="flex flex-wrap gap-2">
+        <span class="chip bg-[#ffe7a3]">🟡 Bingo</span><span class="chip bg-[#ffd0c9]">🌶️ Kurkure</span><span class="chip bg-[#fff2a8]">🥔 Lay's</span>
+      </div>
+      <p class="display text-2xl font-bold mt-5">"All are doing the same, nothing to find inspiring or interesting. Repetitive."</p>
+      <div class="grid sm:grid-cols-2 gap-5 mt-6 items-center">
+        <div class="rounded-2xl border-2 border-black overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-amber-700 aspect-video relative">
+          <div class="absolute inset-0 grid place-items-center">
+            <div class="w-14 h-14 rounded-full bg-white/90 grid place-items-center text-2xl wiggle">▶</div>
+          </div>
+          <span class="absolute top-2 left-2 chip !text-[10px] !py-0">Trend collab</span>
+          <span class="absolute bottom-2 right-2 text-white/80 text-xs">⭐ The one exception</span>
+        </div>
+        <div class="relative pl-6">
+          <span class="absolute left-0 top-1 text-2xl">↳</span>
+          <p class="text-black/80 leading-relaxed">Liked this one, though. It goes with the trend, and I'm guessing it's a <b>barter collab</b>. Not successful, but a good try.</p>
+          <p class="mt-2 italic text-[var(--hot)] font-semibold">"Achhe se likha hota toh could've been a banger."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section id="proof" class="bg-black text-white border-y-2 border-black py-20">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4 mb-10">
+      <div>
+        <p class="font-bold text-[var(--yum)] uppercase tracking-widest text-sm">03 — Receipts</p>
+        <h2 class="display font-bold text-5xl sm:text-6xl mt-2">Proof</h2>
+      </div>
+      <p class="text-white/60 max-w-md">Case in point: the Ananya Panday ad.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="rounded-2xl border-2 border-white/20 p-6 reveal">
+        <p class="text-white/60 text-sm">Ananya Panday ad · views</p>
+        <p class="display font-bold text-6xl text-[var(--yum)] mt-2 counter" data-to="1.7" data-suffix="M" data-dec="1">0</p>
+        <p class="text-white/60 text-sm mt-2">Huge number on paper…</p>
+      </div>
+      <div class="rounded-2xl border-2 border-white/20 p-6 reveal">
+        <p class="text-white/60 text-sm">…but only · likes</p>
+        <p class="display font-bold text-6xl text-[var(--hot)] mt-2 counter" data-to="20" data-suffix="K">0</p>
+        <p class="text-white/60 text-sm mt-2">≈ <b class="text-white">1.2%</b> like-to-view ratio. The assessment records a boost after weak organic performance.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-white/20 p-6 reveal">
+        <p class="text-white/60 text-sm">Organic posts · views</p>
+        <p class="display font-bold text-6xl text-white mt-2 counter" data-to="4" data-suffix="K">0</p>
+        <p class="text-white/60 text-sm mt-2">Not acceptable for a brand with <b class="text-white">133k followers</b>.</p>
+      </div>
+    </div>
+
+    <!-- engagement bar comparison -->
+    <div class="mt-8 rounded-2xl border-2 border-white/20 p-6 reveal">
+      <p class="font-semibold mb-4">Paid vs. organic: why the numbers don't add up</p>
+      <div class="space-y-4 text-sm">
+        <div><div class="flex justify-between mb-1"><span>Boosted celeb ad: views</span><span>1,700,000</span></div><div class="h-4 bg-white/10 rounded-full overflow-hidden"><div class="bar h-full bg-[var(--yum)] rounded-full" data-w="100"></div></div></div>
+        <div><div class="flex justify-between mb-1"><span>Boosted celeb ad: likes</span><span>20,000</span></div><div class="h-4 bg-white/10 rounded-full overflow-hidden"><div class="bar h-full bg-[var(--hot)] rounded-full" data-w="1.17647"></div></div></div>
+        <div><div class="flex justify-between mb-1"><span>Typical organic reel: views</span><span>~4,000</span></div><div class="h-4 bg-white/10 rounded-full overflow-hidden"><div class="bar h-full bg-white rounded-full" data-w="0.235294"></div></div></div>
+      </div>
+    </div>
+
+    <div class="mt-8 grid md:grid-cols-2 gap-6 items-center">
+      <div class="grid grid-cols-3 gap-2 reveal">
+        <div class="aspect-[9/14] rounded-xl bg-gradient-to-b from-red-600 to-red-900 border-2 border-white/20 grid place-items-center text-xs text-white/80 text-center p-2">"Apparently…"</div>
+        <div class="aspect-[9/14] rounded-xl bg-gradient-to-b from-neutral-700 to-neutral-900 border-2 border-white/20 grid place-items-center text-xs text-white/80 text-center p-2">Reacting to the ad</div>
+        <div class="aspect-[9/14] rounded-xl bg-gradient-to-b from-amber-500 to-red-800 border-2 border-white/20 grid place-items-center text-xs text-white/80 text-center p-2">Reacting to the ad, again</div>
+      </div>
+      <div class="reveal">
+        <p class="text-white/70 text-lg">The response was to boost the post rather than fix the content. That's treating a creative problem as a media-spend problem. Nothing compounds, and every campaign starts from zero.</p>
+        <p class="display font-bold text-5xl mt-4">Full stop<span class="text-[var(--hot)]">.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 1 -->
+<section id="part1" class="max-w-7xl mx-auto px-4 py-20">
+  <div class="grid lg:grid-cols-3 gap-8">
+    <div class="reveal lg:sticky lg:top-24 h-fit">
+      <p class="display font-bold text-8xl text-[var(--yum)] [-webkit-text-stroke:2px_#1b1b1b]">01</p>
+      <h2 class="display font-bold text-4xl">Part 1</h2>
+      <p class="text-black/60 mt-2">Understanding the opportunity</p>
+    </div>
+    <div class="lg:col-span-2 space-y-6">
+      <div class="card p-7 reveal">
+        <span class="chip bg-[var(--yum)]">What's the actual business problem?</span>
+        <p class="display text-2xl sm:text-3xl font-bold mt-4 leading-tight">Too Yumm doesn't have a reach problem or a money problem. It has a <span class="bg-[var(--hot)] text-white px-2">format problem</span>.</p>
+        <p class="mt-3 text-black/70">The brand has been running the same playbook (pay a creator, get a post, move on) for long enough that the format itself has gone invisible. Piling more budget onto the same model of buying views won't fix slowing engagement, because the audience has already learned to scroll past it.</p>
+        <p class="mt-3 text-black/70">The clearest evidence of this sits in the brand's own numbers. The recent Ananya Panday collaboration pulled <b>1.7 million views</b> but a comparatively thin <b>20,000 likes</b>, and the response was to boost the post rather than fix the content. That's treating a creative problem as a media-spend problem.</p>
+        <p class="mt-3 text-black/70">The real gap is that nothing Too Yumm makes right now compounds. Every campaign is a one-off collaboration that starts from zero, with no owned format, face, or tone that audiences come to expect and return for. <b>Two new launches in four months</b> makes this urgent: without something people are already anticipating, both products will land inside the same tired scroll pattern the current content is already struggling against.</p>
+      </div>
+      <div class="card p-7 reveal">
+        <span class="chip">❓ What would you ask before recommending an idea?</span>
+        <ol class="mt-4 space-y-2 list-decimal list-inside text-lg">
+          <li>Is it reach or engagement that's actually declining, and on which platforms specifically? The two call for different fixes.</li>
+          <li>What's the real timeline and testing budget for the two launches, and how much of it is genuinely set aside for something beyond a standard media plan?</li>
+          <li>What's been tried before that showed some promise but got shelved? There's often a half-proven idea worth reviving instead of starting cold.</li>
+          <li>Are there brand-safety, legal, or category constraints, past creator controversies, exclusivity clauses, regional sensitivities, that would rule certain creators or formats out early?</li>
+          <li>Is this budget meant to move a sales and trial metric, or a brand-perception metric? Those two goals call for genuinely different content.</li>
+        </ol>
+      </div>
+      <div class="card p-7 reveal">
+        <span class="chip">💡 What opportunities might the client have missed?</span>
+        <div class="mt-5 space-y-4">
+          <div class="flex gap-4"><span class="shrink-0 w-9 h-9 rounded-full bg-black text-[var(--yum)] grid place-items-center font-bold">1</span><p>They're spending to buy reach with nothing that compounds. Every rupee resets to zero once a campaign ends, instead of building toward <b>an asset that keeps paying off</b>.</p></div>
+          <div class="flex gap-4"><span class="shrink-0 w-9 h-9 rounded-full bg-black text-[var(--yum)] grid place-items-center font-bold">2</span><p>Their own channels are being treated as an afterthought to influencer content instead of a <b>distribution asset in their own right</b>. Lay's is proof that even a brand with a huge following can't buy its way out of a stale content model; the fix isn't a bigger creator, it's a format people actively choose to follow.</p></div>
+          <div class="flex gap-4"><span class="shrink-0 w-9 h-9 rounded-full bg-black text-[var(--yum)] grid place-items-center font-bold">3</span><div><p>There's unclaimed space in <b>low-effort, high-relatability content</b>. A real personality snacking on camera with no obvious brand brief reads far more convincing than another paid, polished collaboration, and it's exactly the kind of content the current strategy skips over.</p><p class="note px-4 py-3 mt-3 text-sm">An everyday-snacking thread: a creator talks about daily life while naturally holding and eating Too Yumm chips, not performing a scripted brand moment.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 2 -->
+<section id="part2" class="bg-white border-y-2 border-black py-20">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid lg:grid-cols-3 gap-8">
+      <div class="reveal lg:sticky lg:top-24 h-fit">
+        <p class="display font-bold text-8xl text-[var(--hot)] [-webkit-text-stroke:2px_#1b1b1b]">02</p>
+        <h2 class="display font-bold text-4xl">Part 2</h2>
+        <p class="text-black/60 mt-2">Build the solution</p>
+        <div class="mt-6 flex lg:flex-col flex-wrap gap-2 text-sm">
+          <a href="#p2-idea" class="chip hover:bg-[var(--yum)]">The idea</a>
+          <a href="#p2-hooks" class="chip hover:bg-[var(--yum)]">Content hooks</a>
+          <a href="#p2-why" class="chip hover:bg-[var(--yum)]">Why it works</a>
+          <a href="#p2-creators" class="chip hover:bg-[var(--yum)]">Creators</a>
+          <a href="#p2-integration" class="chip hover:bg-[var(--yum)]">Brand integration</a>
+          <a href="#p2-dist" class="chip hover:bg-[var(--yum)]">Distribution & budget</a>
+        </div>
+      </div>
+      <div class="lg:col-span-2 space-y-6">
+        <div id="p2-idea" class="card p-7 reveal bg-[var(--yum)]">
+          <span class="chip">The idea</span>
+          <p class="display text-3xl font-bold mt-4 leading-tight">Build a recurring, in-house content property for Too Yumm.</p>
+          <p class="mt-3 text-lg">It runs alongside, not instead of, a sharper and smaller creator layer. Two engines, working together.</p>
+          <div class="mt-5 inline-flex items-center gap-3 bg-black text-[var(--yum)] rounded-full px-5 py-2 font-bold">🚀 10–15 creator collabs a month, chosen for fit</div>
+        </div>
+
+        <div class="card p-7 reveal">
+          <span class="chip">🏠 Two engines, working together</span>
+          <ul class="mt-4 space-y-3 text-black/80">
+            <li class="flex gap-3"><span>→</span><div><b>An in-house content arm.</b> Badass Media scripts and ships trend-responsive short-form content directly through Too Yumm's own pages, on a live, always-on cadence, without waiting on a creator's calendar or diluting the message through someone else's voice.</div></li>
+            <li class="flex gap-3"><span>→</span><div><b>A tighter creator layer.</b> 10 to 15 collaborations a month, chosen for fit rather than follower count, plus 2 to 3 anchor videos a month built around one or two consistent faces, so the brand starts to own a recognizable format instead of renting a new one every time.</div></li>
+          </ul>
+          <p class="mt-5 text-black/80"><b>Two directions worth testing early:</b> a trend-driven format where a well-known face narrates their own Too Yumm moment, adapting a hook like "why does this pack never seem to finish" into a proper recurring bit, or leaning into the chips-and-Coke-Zero pairing trend that's already forming organically.</p>
+          <p class="mt-3 text-black/80">Alongside that, a loose, relatable <b>"everyday snacking"</b> thread follows one creator's daily life, with Too Yumm woven in the way it would actually show up in a real routine, not as a scripted brand moment.</p>
+        </div>
+
+        <div id="p2-hooks" class="reveal">
+          <p class="font-bold uppercase tracking-widest text-sm text-black/50 mb-3">Content hooks: click to flip</p>
+          <div class="grid sm:grid-cols-2 gap-4" id="hooks"></div>
+        </div>
+
+        <div id="p2-why" class="card p-7 reveal">
+          <span class="chip bg-[var(--yum)]">✅ Why this solves the business problem</span>
+          <p class="text-xl mt-4">It directly answers the <b>format problem</b> from Part 1. Instead of another campaign that starts from zero, Too Yumm builds a recognizable, recurring presence that compounds month over month.</p>
+          <p class="mt-3 text-black/80">This won't spike sales overnight on its own, and it isn't meant to, but it builds the kind of reach and recall a one-off influencer buy never does. It gives Too Yumm real content in market before both new launches, instead of building from scratch under launch pressure.</p>
+        </div>
+
+        <div id="p2-creators" class="card p-7 reveal">
+          <span class="chip">🎤 Creator and host recommendations</span>
+          <div class="flex flex-wrap gap-3 mt-4">
+            <div class="flex items-center gap-3 border-2 border-black rounded-full pr-4"><span class="w-10 h-10 rounded-full bg-[var(--yum)] grid place-items-center font-bold border-r-2 border-black">PJ</span><span class="font-semibold">Purav Jha</span><span class="text-xs text-black/50">~7.8M followers</span></div>
+            <div class="flex items-center gap-3 border-2 border-black rounded-full pr-4"><span class="w-10 h-10 rounded-full bg-[var(--hot)] text-white grid place-items-center font-bold border-r-2 border-black">PS</span><span class="font-semibold">Puneet Superstar</span></div>
+          </div>
+          <p class="mt-5 text-black/80"><b>Purav Jha</b> (around <b>7.8M Instagram followers</b>, entertainment and comedy content, roughly <b>8% engagement</b>) has worked with FMCG brands before and delivers consistently polished content. A strong fit for the anchor-format role, where consistency across multiple videos matters more than one big spike.</p>
+          <p class="mt-3 text-black/80">The goal here isn't a single paid post but a standing arrangement: <b>2 to 3 videos a month</b>, each targeting well over a million views, timed to support the two new flavour launches.</p>
+          <p class="mt-3 text-black/80"><b>Puneet Superstar</b> brings enormous reach and a very distinct, deliberately unpolished comedic voice that could work well for the loose, everyday-snacking content this idea leans on.</p>
+          <p class="note px-4 py-3 mt-3 text-sm"><b>Brand-safety flag:</b> The supplied assessment describes Puneet Superstar as a polarising creator who has drawn recent legal and public criticism for content mocking people and places, and refers to an active case in Himachal Pradesh. This needs a proper review with legal and comms before signing him, and likely a narrower, tightly controlled brief if he's used at all. Surface this now rather than glossing over it.</p>
+          <p class="mt-3 text-black/80">A <b>regional, character-led voice in the spirit of Ravi Kishan's ad work</b> is worth keeping as a reference point for the <b>namkeen range</b> specifically, if Too Yumm wants a punchier, catchphrase-driven route for that category. A line like "yeh chips khatam hi kyun nahi ho raha" carries the kind of local, quotable energy that tends to travel well organically.</p>
+        </div>
+
+        <div id="p2-integration" class="card p-7 reveal">
+          <span class="chip">🧩 Brand integration</span>
+          <div class="grid sm:grid-cols-3 gap-4 mt-5">
+            <div class="rounded-xl border-2 border-black p-4 bg-[#1a1a2e] text-white"><p class="text-3xl">🍿</p><p class="font-bold mt-2">Netflix & chips</p><p class="text-sm text-white/70 mt-1">Movie-night and watch-party content pairing new releases with snacking.</p></div>
+            <div class="rounded-xl border-2 border-black p-4 bg-[#0f3d2e] text-white"><p class="text-3xl">🎮</p><p class="font-bold mt-2">Gamers</p><p class="text-sm text-white/70 mt-1">Too Yumm positioned as the snack that won't grease up a keyboard or controller mid-session, since it's baked and not fried.</p></div>
+            <div class="rounded-xl border-2 border-black p-4 bg-[#ff7a00] text-black"><p class="text-3xl">🪔</p><p class="font-bold mt-2">Festivals</p><p class="text-sm text-black/70 mt-1">Navratri and garba-themed content, plus a Diwali gifting or snacking moment. Both are natural high-attention windows already on the calendar.</p></div>
+          </div>
+        </div>
+
+        <div id="p2-dist" class="grid sm:grid-cols-2 gap-6">
+          <div class="card p-7 reveal">
+            <span class="chip">📡 Distribution plan</span>
+            <ul class="mt-4 space-y-3 text-sm text-black/80 list-disc pl-5">
+              <li><b>Owned channels lead:</b> Instagram Reels and YouTube Shorts become the primary always-on feed, since this is where in-house content lives without depending on a creator's audience to carry it.</li>
+              <li>Creator content is reshared through Too Yumm's own pages within <b>24 to 48 hours</b> of going live, extending its life well past the creator's own feed.</li>
+              <li>Paid boosting is reserved for only the <b>top-performing fifth (20%)</b> of organic posts each month, identified by early engagement rather than spent blindly across everything. This directly fixes the pattern flagged in the competitor research: a mediocre organic post propped up with paid spend instead of improved content.</li>
+              <li>A lightweight <b>trend-response pod, in-house plus agency</b>, can turn around a topical video within <b>24 to 48 hours</b>. Navratri, Diwali and cricket season are genuinely time-sensitive opportunities.</li>
+            </ul>
+          </div>
+          <div class="card p-7 reveal bg-black text-white">
+            <span class="chip text-black">💰 Budget</span>
+            <p class="display text-5xl font-bold mt-4 text-[var(--yum)]">₹60–70L</p>
+            <p class="text-white/60 text-sm mt-1">Roughly 60 to 70 lakhs a month, covering in-house production, the creator layer, and a working paid-boost reserve. Broken down in full against the commercials in Part 3 ↓</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 3 -->
+<section id="part3" class="max-w-7xl mx-auto px-4 py-20">
+  <div class="grid lg:grid-cols-3 gap-8">
+    <div class="reveal lg:sticky lg:top-24 h-fit">
+      <p class="display font-bold text-8xl text-white [-webkit-text-stroke:2px_#1b1b1b]">03</p>
+      <h2 class="display font-bold text-4xl">Part 3</h2>
+      <p class="text-black/60 mt-2">Sell the idea</p>
+      <p class="text-sm text-black/50 mt-3">Written as five slides, matching what would actually go in front of the client.</p>
+    </div>
+    <div class="lg:col-span-2 space-y-6">
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="card p-7 reveal">
+          <span class="chip bg-[var(--yum)]">Slide 1: Why this beats a regular influencer campaign</span>
+          <p class="mt-4">A regular influencer campaign buys attention for exactly as long as it's paid for. This model builds <b>a format Too Yumm owns</b>, so results compound month over month instead of resetting to zero with every new brief.</p>
+          <p class="mt-3">Run consistently, it does the job of the always-on media plan the brand is currently missing, while keeping the flexibility to burst around the two new launches specifically.</p>
+        </div>
+        <div class="card p-7 reveal">
+          <span class="chip bg-[var(--yum)]">Slide 2: Expected business outcomes</span>
+          <ul class="mt-4 space-y-3 list-disc pl-5">
+            <li><b>Reach and recall that outlasts a single campaign</b>, since content lives on owned channels indefinitely instead of vanishing after the boost window closes.</li>
+            <li>No new spend required just to keep views up, since paid boosting targets organic winners instead of propping up every post.</li>
+            <li><b>Two ready-made launch vehicles:</b> by the time the new products ship, there's already an audience and a format waiting for them.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card p-7 reveal">
+        <span class="chip">📦 Slide 3: Deliverables per month</span>
+        <div class="grid grid-cols-3 gap-4 mt-5 text-center">
+          <div class="rounded-xl border-2 border-black p-4"><p class="display text-4xl font-bold">2–3</p><p class="text-xs mt-1 text-black/60">trend-responsive ads with 100k to 200k follower creators</p></div>
+          <div class="rounded-xl border-2 border-black p-4"><p class="display text-4xl font-bold">~10</p><p class="text-xs mt-1 text-black/60">creator collaborations across the wider layer</p></div>
+          <div class="rounded-xl border-2 border-black p-4"><p class="display text-4xl font-bold">30–45</p><p class="text-xs mt-1 text-black/60">in-house team reels</p></div>
+        </div>
+        <div class="mt-4 rounded-xl bg-[var(--yum)] border-2 border-black p-4 flex items-center justify-between"><span class="font-semibold">Total content pieces / month</span><span class="display text-3xl font-bold">40–50</span></div>
+      </div>
+
+      <!-- Commercials calculator -->
+      <div class="card p-7 reveal">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <span class="chip">🧾 Slide 4: Commercials</span>
+          <div class="flex border-2 border-black rounded-full overflow-hidden text-sm font-semibold">
+            <button class="est-btn px-4 py-1.5 bg-black text-[var(--yum)]" data-e="low">Low estimate</button>
+            <button class="est-btn px-4 py-1.5" data-e="high">High estimate</button>
+          </div>
+        </div>
+        <div class="mt-6 space-y-5" id="commercials"></div>
+        <div class="mt-6 pt-5 border-t-2 border-black flex items-end justify-between">
+          <span class="font-semibold">Total working estimate, per month</span>
+          <span class="display text-5xl font-bold" id="total">₹60L</span>
+        </div>
+        <p class="text-xs text-black/50 mt-2">The assessment's working budget is <b>₹60–70L per month</b>, including a working paid-boost reserve. Selected line-item subtotal: <b id="lineItemSubtotal">₹40L</b>. The reserve is not separately costed in the source; these indicative line-item ranges are not a reconciled quote.</p>
+      </div>
+
+      <div class="card p-7 reveal bg-black text-white">
+        <span class="chip text-black bg-[var(--yum)]">🔥 Slide 5: Why Badass Media should execute it</span>
+        <p class="mt-5 text-lg">Badass Media is known for creative marketing that already works at this scale, having partnered with brands like:</p>
+        <div class="flex flex-wrap gap-2 mt-4">
+          <span class="px-4 py-2 rounded-full bg-[#e23744] font-bold">Zomato</span>
+          <span class="px-4 py-2 rounded-full bg-[#1b3f8b] font-bold">ITC</span>
+          <span class="px-4 py-2 rounded-full bg-[#2a6df4] font-bold">Angel One</span>
+          <span class="px-4 py-2 rounded-full bg-[#5a1e96] font-bold">Zepto</span>
+          <span class="px-4 py-2 rounded-full bg-[#ff9900] text-black font-bold">Amazon</span>
+        </div>
+        <p class="mt-5 text-white/70">The agency has a consistent track record of delivering internet-first campaigns with proven results. The client-servicing approach behind this assessment (understand the business first, then build the right solution) is exactly the muscle this idea needs: not another vendor executing a brief, but <b>a partner who owns the format end to end</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 4 -->
+<section id="part4" class="max-w-7xl mx-auto px-4 pb-24">
+  <div class="grid lg:grid-cols-3 gap-8">
+    <div class="reveal">
+      <p class="display font-bold text-8xl text-transparent [-webkit-text-stroke:2px_#1b1b1b]">04</p>
+      <h2 class="display font-bold text-4xl">Part 4</h2>
+      <p class="text-black/60 mt-2">Outbound thinking</p>
+    </div>
+    <div class="lg:col-span-2 space-y-6">
+      <div class="card p-7 reveal">
+        <span class="chip bg-[var(--yum)]">Who would you approach?</span>
+        <p class="mt-4 text-black/80">The right first door is whoever owns organic and social strategy day to day, most likely titled <b>Head of Marketing, Senior Brand Manager, or Digital and Content Lead</b> at Too Yumm (Guiltfree Industries, part of the RP-Sanjiv Goenka Group). This is the person who owns the reach and engagement KPIs this idea is built to fix, and who can greenlight a pilot without needing it to clear the whole organization first.</p>
+        <p class="note px-4 py-3 mt-4 text-sm"><b>Account context from the assessment:</b> Rajeev Khandelwal, CEO of Guiltfree Industries, is worth knowing and worth being visible to over time, but he isn't the first door for a campaign-level idea like this; that decision typically sits a level or two below him. Too Yumm's current integrated brand partner is <b>Curativity</b>, appointed in early 2024 to shape brand positioning across the portfolio. The right framing is a complementary, creator-first proposal that solves a specific gap, not a full agency review pitch that steps on an existing mandate.</p>
+      </div>
+
+      <div class="card p-7 reveal">
+        <span class="chip">How would you find them?</span>
+        <ul class="mt-4 space-y-3 text-black/80 list-disc pl-5">
+          <li>Search <b>LinkedIn (Sales Navigator, if available)</b> filtered by company, Guiltfree Industries or Too Yumm, and title containing Marketing or Brand.</li>
+          <li>Cross-check against recent trade press (<b>afaqs!, exchange4media, Campaign India</b>), since Too Yumm's marketing leadership has changed hands more than once in the last few years, and a quick search confirms who currently holds the seat.</li>
+          <li>Check who is tagged or credited on Too Yumm's own Instagram and LinkedIn posts, and on any coverage of the two upcoming launches; brand and PR contacts are often named there directly.</li>
+          <li><b>Look for a warm path first.</b> A mutual connection through Badass Media's existing FMCG roster is worth more than a cold request.</li>
+        </ul>
+      </div>
+
+      <div class="card p-7 reveal">
+        <span class="chip bg-[var(--yum)]">First cold email</span>
+        <p class="mt-4 text-sm text-black/60 italic">Written direct, blunt, and evidence-first, in the spirit of an Alex Hormozi pitch: lead with the number, name the real problem, make one clear ask.</p>
+        <div class="mt-5 space-y-4 text-black/80">
+          <p><b class="text-[var(--hot)]">Subject:</b> Your influencer reach is dead. Here's the data.</p>
+          <p>Hi [Head of Marketing],</p>
+          <p>Quick one.</p>
+          <p>I looked at Too Yumm's last few influencer posts. The Ananya Panday video: 1.7 million views, 20K likes. Those likes are inflated. The post got boosted after it underperformed organically.</p>
+          <p>That's not a reach problem. That's an audience that has stopped noticing.</p>
+          <p>Every FMCG brand in this category is running the same playbook right now: pay a creator, post once, hope. Your feed and your competitors' feeds are starting to look identical. None of it compounds, so every campaign starts from zero.</p>
+          <p>We think there's a better way to walk into the next two launches.</p>
+          <p>Not a bigger influencer buy. An in-house content engine you don't have to rent every month, backed by 10 to 15 sharper (not just bigger) creator collaborations, that actually builds something people choose to follow instead of scroll past.</p>
+          <p>We've built this exact model for Zomato, ITC, Angel One, Zepto and Amazon. It works because it survives past the campaign that funded it.</p>
+          <p><b>Worth 15 minutes to walk you through it?</b></p>
+          <p>If this isn't your call, just point me to whoever owns organic and social strategy and I'll take it there directly.</p>
+          <p>[Your Name]<br>Badass Media</p>
+          <p class="text-black/60 italic">P.S. If the two new launches already have a content plan locked in, ignore this. If they don't, whoever moves first on format owns the category before everyone else notices what happened.</p>
+        </div>
+      </div>
+
+      <div class="card p-7 reveal">
+        <span class="chip">Shorter LinkedIn DM version</span>
+        <p class="mt-4 text-black/80">Hi [Name], following the Too Yumm x Ananya Panday content: the reach was strong but it needed a boost to get engagement moving, which usually points to audience fatigue, not a distribution problem. We've built content engines that fix exactly this for Zomato, ITC and Zepto. Open to 15 minutes before your next launch?</p>
+      </div>
+
+      <div class="card p-7 reveal">
+        <span class="chip bg-[var(--yum)]">Follow-up strategy</span>
+        <ul class="mt-4 space-y-3 text-black/80 list-disc pl-5">
+          <li><b>Day 0:</b> send the email above.</li>
+          <li><b>Day 3:</b> send a LinkedIn connection request with a one-line note referencing something specific and recent about Too Yumm, not a generic bump.</li>
+          <li><b>Day 7:</b> a short second email adding one new, concrete proof point, a mini case study or a single sharp stat, not just a "checking in."</li>
+          <li><b>Day 14:</b> one final, short message that makes it easy to say no: "should I close the loop on this, or is now just not the right time."</li>
+          <li>If there's still no response, <b>stop there</b> and re-approach naturally once the two new launches actually go live. A live launch is a legitimate, non-pushy reason to come back.</li>
+        </ul>
+      </div>
+
+      <p class="text-sm text-black/60 italic reveal">This document lays out full reasoning for the assessment. The actual submission to Badass Media is capped at <b>8 slides</b>, so the next step is condensing this into that format, keeping the thinking intact and cutting it down to what a marketing team would read in one sitting.</p>
+
+      <div class="rounded-[18px] border-2 border-dashed border-black p-10 text-center bg-white/60 min-h-[260px] grid place-items-center reveal">
+        <div>
+          <p class="text-5xl">🚧</p>
+          <p class="display text-2xl font-bold mt-3" id="scratch-label">Your outreach scratchpad</p>
+          <p class="text-black/60 mt-2 max-w-md mx-auto">Keep prospects, proof points and next steps alongside the outbound plan. Your notes are saved in this browser.</p>
+          <textarea id="scratch" rows="4" class="mt-5 w-full max-w-lg mx-auto block rounded-xl border-2 border-black p-3 text-left bg-[#fff8c4] focus:outline-none focus:ring-4 focus:ring-[var(--yum)]" aria-labelledby="scratch-label" placeholder="Who would you contact first? Add prospects, proof points or next steps."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t-2 border-black bg-black text-white">
+  <div class="max-w-7xl mx-auto px-4 py-10 flex flex-wrap items-center justify-between gap-4">
+    <p class="display font-bold text-2xl">Too Yumm <span class="text-[var(--yum)]">×</span> Badass Media</p>
+    <p class="text-white/50 text-sm">Client solutions assessment · Brainstorm board, reworked as a website</p>
+    <a href="#top" class="chip text-black">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+// Observations
+const obs = [
+  {t:'reach', h:'The format has gone invisible', b:"Too Yumm doesn't have a reach or money problem. It has a format problem: pay a creator, get a post, move on. Audiences have learned to scroll past the same playbook."},
+  {t:'reach', h:'Views without engagement', b:"The Ananya Panday collaboration pulled 1.7 million views but only 20,000 likes. The assessment records a boost after weak organic performance: treating a creative problem as a media-spend problem."},
+  {t:'strategy', h:'Vertical, not rooted', b:'Each one-off collaboration starts from zero. There is no owned format, face or tone that audiences expect and return for. The brand needs a recurring property that compounds, not more content circling the same celebrity ad.'},
+  {t:'reach', h:'4-digit views, 2-digit likes', b:'Creator-led videos get 4-digit views and 3- or even 2-digit likes. Not a good sign for a large-scale FMCG brand with 133k followers.'},
+  {t:'content', h:'Trends, half-done', b:"They follow trends sometimes, but not well, and mostly stick to festivals and occasions (Holi, IPL). That's fine for a brand this size, but it's not enough."},
+  {t:'content', h:'The "apparently" personality', b:'Their whole personality is someone watching the Varun Dhawan or Ananya Panday ad and saying "apparently" blah blah blah.'},
+  {t:'content', h:'Repetitive', b:'UGC, a creator talking about the ad and saying "apparently", a basic trend follow, "IPL aa gaya yayyy". On repeat.'},
+  {t:'strategy', h:'Renting reach', b:"They're spending to buy reach with nothing that compounds. Every rupee resets to zero once a campaign ends, instead of building an asset that keeps paying off."},
+  {t:'strategy', h:'Baked, not fried', b:'What I personally remember Too Yumm for is the "baked, not fried" ads with Virat Kohli.'},
+  {t:'content', h:'Posting for the sake of it', b:"Random posting with no aesthetic, as if someone just has to hit 30 pieces of content a month."},
+];
+const tagMap = {reach:['📉 Reach','bg-[#ffd0c9]'], strategy:['🧭 Strategy','bg-[#d7ecff]'], content:['🎬 Content','bg-[#e3ffd1]']};
+const grid = document.getElementById('obsGrid');
+function renderObs(f='all'){
+  grid.innerHTML = obs.map((o,i)=> (f==='all'||o.t===f) ? `
+    <div class="card p-5">
+      <div class="flex items-center justify-between">
+        <span class="display font-bold text-4xl">${String(i+1).padStart(2,'0')}</span>
+        <span class="chip ${tagMap[o.t][1]}">${tagMap[o.t][0]}</span>
+      </div>
+      <h3 class="display font-bold text-lg mt-3">${o.h}</h3>
+      <p class="text-sm text-black/70 mt-2 leading-relaxed">${o.b}</p>
+    </div>` : '').join('');
+}
+renderObs();
+document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('bg-black','text-[var(--yum)]'));
+  b.classList.add('bg-black','text-[var(--yum)]');
+  renderObs(b.dataset.f);
+}));
+
+// Hooks (flip cards)
+const hooks = [
+  {e:'🤯', front:'Puneet Superstar', back:'Original hook: Puneet Superstar\'s "iyaaaaaaaaaaa" right after eating Too Yumm Bhoot chips. His deliberately unpolished voice fits everyday-snacking content, but any use needs legal and comms review and a narrowly controlled brief. See the brand-safety flag below.'},
+  {e:'💃', front:'"In the nights" trend', back:'The trending clip with the girl dancing: shoot an extended "part 2" where the others are just sitting there eating chips.'},
+  {e:'😂', front:'Ravi Kishan', back:'A regional, character-led reference for the namkeen range: "yeh chips khatam hi kyun nahi ho raha". Turn that local, quotable energy into a recurring bit. Original follow-up: "Arey, abhi toh pesh kiya hai, abhi toh aur aayega."'},
+  {e:'🥤', front:'Coke Zero pairing', back:'Lean into the chips-and-Coke-Zero pairing trend already forming organically. A well-known face narrates their own Too Yumm moment as a recurring format. Original hook: "Bye bye 20 rupees, hello Too Yumm chips."'},
+];
+document.getElementById('hooks').innerHTML = hooks.map(h=>`
+  <button class="hook card p-5 text-left min-h-[150px] relative overflow-hidden" data-flipped="0">
+    <div class="front"><p class="text-4xl">${h.e}</p><p class="display font-bold text-xl mt-3">${h.front}</p><p class="text-xs text-black/40 mt-2">Tap to reveal ↻</p></div>
+    <div class="back hidden"><p class="text-sm leading-relaxed">${h.back}</p><p class="text-xs text-black/40 mt-3">Tap to flip back ↻</p></div>
+  </button>`).join('');
+document.querySelectorAll('.hook').forEach(c=>c.addEventListener('click',()=>{
+  c.querySelector('.front').classList.toggle('hidden');
+  c.querySelector('.back').classList.toggle('hidden');
+  c.classList.toggle('bg-[var(--yum)]');
+}));
+
+// Commercials
+const comm = [
+  {n:'10 creator collabs (100–200k followers)', low:20, high:30, c:'bg-[var(--yum)]'},
+  {n:'In-house/agency production (₹20–30k per video)', low:10, high:20, c:'bg-[var(--hot)]'},
+  {n:'1–2 larger internet celebrities per month', low:10, high:20, c:'bg-black'},
+];
+// The quoted working budget is separate from the sum of indicative line-item ranges.
+const monthlyWorkingEstimate = {low:60, high:70};
+function renderComm(e='low'){
+  const max = 30;
+  document.getElementById('commercials').innerHTML = comm.map(x=>`
+    <div>
+      <div class="flex justify-between text-sm mb-1"><span>${x.n}</span><b>₹${x.low}–${x.high}L</b></div>
+      <div class="h-6 rounded-full border-2 border-black overflow-hidden bg-white"><div class="bar h-full ${x.c}" style="width:0%" data-target="${(x[e]/max)*100}"></div></div>
+    </div>`).join('');
+  requestAnimationFrame(()=>setTimeout(()=>document.querySelectorAll('#commercials .bar').forEach(b=>b.style.width=b.dataset.target+'%'),30));
+  const subtotal = comm.reduce((s,x)=>s+x[e],0);
+  document.getElementById('total').textContent = '₹'+monthlyWorkingEstimate[e]+'L';
+  document.getElementById('lineItemSubtotal').textContent = '₹'+subtotal+'L';
+}
+renderComm();
+document.querySelectorAll('.est-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.est-btn').forEach(x=>x.classList.remove('bg-black','text-[var(--yum)]'));
+  b.classList.add('bg-black','text-[var(--yum)]');
+  renderComm(b.dataset.e);
+}));
+
+// Map navigation
+document.querySelectorAll('.map-node').forEach(n=>n.addEventListener('click',()=>document.querySelector(n.dataset.go).scrollIntoView({behavior:'smooth'})));
+
+// Mobile menu
+const mm = document.getElementById('mobileMenu');
+document.getElementById('menuBtn').onclick=()=>mm.classList.toggle('hidden');
+mm.querySelectorAll('a').forEach(a=>a.onclick=()=>mm.classList.add('hidden'));
+
+// Reveal + counters + bars
+const io = new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting) return;
+  e.target.classList.add('in');
+  e.target.querySelectorAll('.counter').forEach(animateCounter);
+  e.target.querySelectorAll('.bar[data-w]').forEach(b=>b.style.width=b.dataset.w+'%');
+  io.unobserve(e.target);
+}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.bar[data-w]').forEach(b=>b.style.width='0%');
+function animateCounter(el){
+  if(el.dataset.done) return; el.dataset.done=1;
+  const to=parseFloat(el.dataset.to), dec=+(el.dataset.dec||0), suf=el.dataset.suffix||'';
+  const start=performance.now(), dur=1400;
+  (function tick(now){
+    const p=Math.min((now-start)/dur,1), v=to*(1-Math.pow(1-p,3));
+    el.textContent=v.toFixed(dec)+suf;
+    if(p<1) requestAnimationFrame(tick);
+  })(start);
+}
+
+// Active nav
+const secs=[...document.querySelectorAll('section[id]')];
+const links=[...document.querySelectorAll('#nav .navlink')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{ if(scrollY>=s.offsetTop-120) cur=s.id; });
+  links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));
+});
+
+// Scratchpad
+const sc=document.getElementById('scratch');
+sc.value=localStorage.getItem('tooyum-part4')||'';
+sc.addEventListener('input',()=>localStorage.setItem('tooyum-part4',sc.value));
+</script>
+</body>
+</html>
